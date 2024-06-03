@@ -12,12 +12,14 @@ a = 3
 b = 2
 summa = a + b
 summa = 8
+print(summa)
+
 
 
 summa = x + int(z)
 
 proizvedenie = x * z  # умножение
-chastnoe = x / z
+
 
 
 x = 10
