@@ -3,10 +3,9 @@ from file_with_token import MY_TOKEN
 
 bot = telebot.TeleBot(MY_TOKEN)
 
-# Определяем стадии опроса
+# Определеяю ( Ставлю свои вопросы ) !
 QUESTION1, QUESTION2, QUESTION3 = range(3)
 
-# Словарь для хранения текущего состояния пользователя
 user_state = {}
 user_answers = {}
 
