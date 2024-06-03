@@ -3,9 +3,10 @@ from file_with_token import MY_TOKEN
 
 bot = telebot.TeleBot(MY_TOKEN)
 
-# Определяю Какой будет мой вопрос!
+# Определяем стадии опроса
 QUESTION1, QUESTION2, QUESTION3 = range(3)
 
+# Словарь для хранения текущего состояния пользователя
 user_state = {}
 user_answers = {}
 
@@ -34,23 +35,24 @@ def question1(message):
 @bot.message_handler(func=lambda message: get_user_state(message.chat.id) == QUESTION2)
 def question2(message):
     set_user_answer(message.chat.id, 'age', message.text)
-    bot.reply_to(message, "Отлично! Теперь ответьте на третий вопрос: Вы любите играть Футбол?")
+    bot.reply_to(message, "Отлично! Теперь ответьте на третий вопрос: Вы любите Играть Футбол?")
+    set_user_state(message.chat.id, QUESTION3)
 
 @bot.message_handler(func=lambda message: get_user_state(message.chat.id) == QUESTION3)
 def question3(message):
-    set_user_answer(message.chat.id, 'color', message.text)
+    set_user_answer(message.chat.id, 'Game', message.text)
     answers = user_answers.get(message.chat.id, {})
     bot.reply_to(message, f"Спасибо за ответы! Вот что вы ответили:\n"
                           f"Имя: {answers.get('name')}\n"
                           f"Возраст: {answers.get('age')}\n"
-                          f"Любимый цвет: {answers.get('color')}")
-    user_state.pop(message.chat.id, None)
-    user_answers.pop(message.chat.id, None)
+                          f"Любите играть Футбол: {answers.get('Game')}")
+    user_state.pop(message.chat.id, None)  # Сбрасываем состояние пользователя после завершения опроса
+    user_answers.pop(message.chat.id, None)  # Удаляем ответы пользователя после завершения опроса
 
-@bot.message_handler(commands=["cancel"])
+@bot.message_handler(commands=["Not"])
 def cancel(message):
     bot.reply_to(message, "Опрос отменен. До свидания!")
-    user_state.pop(message.chat.id, None)
-    user_answers.pop(message.chat.id, None)
+    user_state.pop(message.chat.id, None)  # Сбрасываем состояние пользователя после отмены опроса
+    user_answers.pop(message.chat.id, None)  # Удаляем ответы пользователя после отмены опроса
 
 bot.infinity_polling()
