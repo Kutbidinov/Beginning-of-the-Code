@@ -56,3 +56,4 @@ def cancel(message):
     user_answers.pop(message.chat.id, None)  # Удаляем ответы пользователя после отмены опроса
 
 bot.infinity_polling()
+
