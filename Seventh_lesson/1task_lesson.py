@@ -14,7 +14,8 @@ def send_welcome(message):
     bot.reply_to(message, "Привет! Я ваш бот! Вы запустили команду /start.")
 
 
-@bot.message_handler(func=lambda message: True)  # этот декоратор для того чтобы отвечать на ОБЫЧНЫЕ текстовые сообщения
+@bot.message_handler(func=lambda message: True)  # этот декоратор для того чтобы отвечать
+# на ОБЫЧНЫЕ текстовые сообщения
 def answer_for_simple_text(message):
     message
     try:

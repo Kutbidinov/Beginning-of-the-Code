@@ -8,3 +8,4 @@ def calculate_factorial(number: int) -> int:
     for i in range(1, number+1):
         factorial *= i  # factorial = factorial * i
     return factorial
+

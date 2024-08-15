@@ -36,3 +36,4 @@ dog1 = Dog(name_pm="Рекс", age_pm=12)
 
 cat1.voice()
 dog1.voice()
+

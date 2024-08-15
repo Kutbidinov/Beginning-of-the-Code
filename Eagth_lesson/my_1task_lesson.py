@@ -30,3 +30,4 @@ print("частное3", chastnoe3)  # 0
 
 chastnoe4 = calculate_chastnoe(7, 0)
 print("частное4", chastnoe4)  # None
+
